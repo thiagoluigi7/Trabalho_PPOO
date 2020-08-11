@@ -28,25 +28,30 @@ public class AcessoDados {
                 
                 //Leitura do tipo de estrategia
                 String[] strat = linha.split(",");
-                System.out.println(strat[0]);
                 
                 if(strat[0].equals("FIFO")) {
                     
                     linha = arq.readLine();
-                    System.out.println("aquiss");
                     
                     while(linha!=null){
-                        //Criação dos clientes
-                        String horario = linha;
-                        Cliente cliente = new ClienteNormal(Integer.parseInt(horario));
                         
-                        Simulacao.inserirCliente(cliente);
+                        //Criação dos clientes
+                        String[] dados = linha.split(",");
+                        if(dados[1].equals("p")){
+                            ClientePrioritario cliente = new ClientePrioritario(Integer.parseInt(dados[0]));
+                            Simulacao.inserirCliente(cliente);
+                        }else if(dados[1].equals("n")){
+                            ClienteNormal cliente = new ClienteNormal(Integer.parseInt(dados[0]));
+                            Simulacao.inserirCliente(cliente);
+                        }else{
+                            throw new RuntimeException("Tipo cliente Invalido");
+                        }
                         
                         linha = arq.readLine();
                     }
                     arq.close();
                 }else{
-                    //throw new RuntimeException("Estratégia de atendimento das filas não configurado");
+                    throw new RuntimeException("Estratégia de atendimento das filas não configurado");
                 }
 
             }
