@@ -1,7 +1,5 @@
 package trabalhopratico_grupo1;
 
-import org.jfree.chart.JFreeChart;
-
 public class AtendenteEstagiario extends Atendente {
 
     private int delay;
