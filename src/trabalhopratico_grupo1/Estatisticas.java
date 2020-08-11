@@ -21,43 +21,63 @@ public class Estatisticas {
      */
     //TODO
     public int calcularTempoTotal() {
-        return 0;
-    }
-
-    //TODO
-    public int calcularNumEventos() {
-        return 0;
+        return tempoTotal;
     }
 
     /**
-     * Este método retorna o tempo médio que se gasta atendento 
-     * um cliente. O tempo médio é obtido pegando o calcularTempoTotal() 
-     * e dividindo pelo número de clientes que foram atendidos no total.
-     * @return tempoMedioAtendimento
+     * Este método calcular quantos eventos foram tratados no total por 
+     * todos os atendentes.
+     * @return numEventos
+     */
+    //TODO
+    public int calcularNumEventos() {
+        return numEventos;
+    }
+
+    /**
+     * Este método retorna o tempo médio que se gasta esperando na fila.
+     * 
+     * @return tempoMedioEsperaNaFila
      */
     //TODO
     public double calcularTempoMedioEsperaNaFila() {
-        return 0;
+        return tempoMedioEsperaNaFila;
     }
     
     /**
-     * 
-     * @return
+     * Este método calcula o tamanho médio que a fila de atendimento 
+     * costuma ter.
+     * @return tamanhoMedioFilaAtendimento
      */
     //TODO
     public double calcularTamanhoMedioFilaAtendimento() {
-        return 0;
+        return tamanhoMedioFilaAtendimento;
     }
 
+    /**
+     * Este método calcula o tamanho máximo que a fila de clientes chegou.
+     * Uma vez que todos os clientes são adicionados na fila no início da
+     * simulação esse valor pode ser obtido através do tamanho do vetor 
+     * clientes antes de acontecer o primeiro atendimento.
+     * @return tamanhoFilaMax
+     */
     //TODO
     public double calcularTamanhoFilaMax() {
-        return 0;
-    }
-    //TODO
-    public double calcularTempoMedioAtendimento() {
-        return 0;
+        return tamanhoFilaMax;
     }
 
+    /**
+     * Este método calcula quanto tempo demora cada atendimento em média.
+     * @return tempoMedioAtendimento
+     */
+    //TODO
+    public double calcularTempoMedioAtendimento() {
+        return tempoMedioAtendimento;
+    }
+
+    /**
+     * Este método criará uma janela com um gráfico nela.
+     */
     //TODO
     public void criarGrafico() {
 
