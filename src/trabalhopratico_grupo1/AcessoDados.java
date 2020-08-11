@@ -1,6 +1,5 @@
 package trabalhopratico_grupo1;
 
-import org.jfree.chart.JFreeChart;
 import java.io.*;
 
 public class AcessoDados {
@@ -31,7 +30,7 @@ public class AcessoDados {
                 String[] strat = linha.split(",");
                 System.out.println(strat[0]);
                 
-                if(strat[0] == "FIFO"){
+                if(strat[0].equals("FIFO")) {
                     
                     linha = arq.readLine();
                     System.out.println("aquiss");
