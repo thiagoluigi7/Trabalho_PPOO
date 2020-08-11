@@ -1,7 +1,5 @@
 package trabalhopratico_grupo1;
 
-import org.jfree.chart.JFreeChart;
-
 public abstract class Evento {
 
     private int tempo;
