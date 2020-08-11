@@ -10,6 +10,7 @@ public class ClienteNormal extends Cliente {
 
     public ClienteNormal(int _horaChegada) {
         this.horaChegada = _horaChegada;
+        filaEventos = new ArrayList<Evento>();
         geraEventos();
     }
 

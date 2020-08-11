@@ -20,30 +20,12 @@ public class Simulacao {
     public void simularAgencia() {
         //Abre a agencia
         tempoAtual = 0;
-        //Recebe os clientes
-        recebeClientes();
+        //Recebe todos os dados do arquivo
+        recebeDados();
         //Começa o atendimento
-        atendimento();
+        atendimento(); //ERRO
         //Ao fim do dia o relatório é gerado
         gerarRelatorio();
-    }
-    
-    /**
-     * Adiciona um cliente na fila de clientes do banco.
-     * Método utilizado durante a leitura do arquivo.
-     * @param cliente
-     */
-    public static void inserirCliente(Cliente cliente){
-        clientes.add(cliente);
-    }
-
-    /**
-     * Adiciona um atendente no banco. Método utilizado 
-     * durante a leitura do arquivo.
-     * @param atendente
-     */
-    public static void inserirAtendente(Atendente atendente){
-        atendentes.add(atendente);
     }
 
     /**
@@ -63,9 +45,11 @@ public class Simulacao {
      * atendentes e o mesmo ocorre com os clientes que são 
      * colocados no ArrayList clientes.
      */
-    private void recebeClientes() {
+    private void recebeDados() {
         AcessoDados acesso = new AcessoDados();
         acesso.lerArquivo("dadosEntrada.txt");
+        clientes = acesso.getClientes();
+        atendentes = acesso.getAtendentes();
     }
 
     /**

@@ -10,6 +10,7 @@ public class ClientePrioritario extends Cliente {
 
     public ClientePrioritario(int _horaChegada) {
         this.horaChegada = _horaChegada;
+        filaEventos = new ArrayList<Evento>();
         geraEventos();
     }
 
