@@ -16,7 +16,9 @@ public abstract class Evento {
     }
     
     
-
+    public int getTempo() {
+        return this.tempo;
+    }
 
 
 }
