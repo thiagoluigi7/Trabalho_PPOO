@@ -95,12 +95,11 @@ public class Simulacao {
     public void gerarRelatorio() {
         Estatisticas relatorio = new Estatisticas();
         relatorio.calcularTempoTotal();
-        relatorio.calcularTempoMedio();
-        relatorio.calcularTempoMedioAtendimento();
         relatorio.calcularNumEventos();
-        relatorio.calcularTempoEsperaMedia();
-        relatorio.calcularTamanhoFilaMedia();
-        relatorio.calcularTamanhoFilaMaximo();
+        relatorio.calcularTempoMedioEsperaNaFila();
+        relatorio.calcularTamanhoMedioFilaAtendimento();
+        relatorio.calcularTamanhoFilaMax();
+        relatorio.calcularTempoMedioAtendimento();
         relatorio.criarGrafico();
     }
 
