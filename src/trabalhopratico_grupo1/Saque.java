@@ -16,5 +16,8 @@ public class Saque extends Evento {
     public int getTempo() {
         return this.tempo;
     }
-    
+
+    public void setTempo(int _tempo) {
+        this.tempo = _tempo;
+    }
 }

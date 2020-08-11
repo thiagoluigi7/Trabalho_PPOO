@@ -16,6 +16,8 @@ public class Deposito extends Evento {
         return this.tempo;
     }
     
-    
+    public void setTempo(int _tempo) {
+        this.tempo = _tempo;
+    }
 
 }
