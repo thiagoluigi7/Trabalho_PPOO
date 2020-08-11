@@ -68,7 +68,7 @@ public class AcessoDados {
             }
 	}
 
-	public void escreverArquivo() {
+	public void escreverArquivo(String nomeArquivo) {
 
 	}
 
