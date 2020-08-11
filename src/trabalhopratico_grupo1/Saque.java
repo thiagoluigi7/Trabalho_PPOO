@@ -2,8 +2,19 @@ package trabalhopratico_grupo1;
 
 public class Saque extends Evento {
 
-    public Saque(int tempo) {
-        super(tempo = ( int )( Math.random() * 10 )+1);
+    private int tempo;
+
+    public Saque() {
+       setTempoInicial();
     }
 
+    private void setTempoInicial() {
+        this.tempo = ( int )( Math.random() * 5 )+1;
+    }
+
+
+    public int getTempo() {
+        return this.tempo;
+    }
+    
 }

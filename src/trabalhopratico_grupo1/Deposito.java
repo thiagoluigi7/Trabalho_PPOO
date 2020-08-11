@@ -2,12 +2,19 @@ package trabalhopratico_grupo1;
 
 public class Deposito extends Evento {
 
-    public Deposito(int tempo){
-        super(tempo = ( int )( Math.random() * 5 )+1);
+    private int tempo;
+
+    public Deposito(){
+        setTempoInicial();
     }
 
+    private void setTempoInicial() {
+        this.tempo = ( int )( Math.random() * 5 )+1;
+    }
     
-    
+    public int getTempo() {
+        return this.tempo;
+    }
     
     
 
