@@ -11,6 +11,7 @@ public class Estatisticas {
     private double tamanhoFilaMedia;
     private int tamanhoFilaMax;
 
+    //TODO
     public void criarGrafico() {
 
     }
