@@ -16,7 +16,7 @@ public class Simulacao {
         //Começa o atendimento
         atendimento();
         //Ao fim do dia o relatório é gerado
-        //gerarRelatorio();
+        gerarRelatorio();
     }
     
     public static void inserirCliente(Cliente cliente){
@@ -58,54 +58,16 @@ public class Simulacao {
      * e o gráfico.
      */
     //TODO
-    /*
-    public gerarRelatorio() {
+    public void gerarRelatorio() {
         Estatisticas relatorio = new Estatisticas();
-        calcularTempoTotal();
-        calcularTempoMedio();
-        calcularTempoMedioAtendimento();
-        calcularNumEventos();
-        calcularTempoEsperaMedia();
-        calcularTamanhoFilaMedia();
-        calcularTamanhoFilaMaximo();
+        relatorio.calcularTempoTotal();
+        relatorio.calcularTempoMedio();
+        relatorio.calcularTempoMedioAtendimento();
+        relatorio.calcularNumEventos();
+        relatorio.calcularTempoEsperaMedia();
+        relatorio.calcularTamanhoFilaMedia();
+        relatorio.calcularTamanhoFilaMaximo();
+        relatorio.criarGrafico();
     }
-*/
-    /**O tempo total é obtido a partir do tempo final. Uma vez que as
-     * operações se iniciam no tempo 0 o momento em que elas acabam é
-     * o tanto que demorou.
-     */
-    //TODO
-    private int calcularTempoTotal() {
-        return 0;
-    }
-
-    /**O tempo médio é obtido pegando o calcularTempoTotal() e dividindo 
-     * pelo número de clientes que foram atendidos no total
-     */
-    //TODO
-    private double calcularTempoMedio() {
-        return 0;
-    }
-    //TODO
-    private double calcularTempoMedioAtendimento() {
-        return 0;
-    }
-    //TODO
-    private int calcularNumEventos() {
-        return 0;
-    }
-    //TODO
-    private double calcularTempoEsperaMedia() {
-        return 0;
-    }
-    //TODO
-    private double calcularTamanhoFilaMedia() {
-        return 0;
-    }
-    //TODO
-    private int calcularTamanhoFilaMaximo() {
-        return 0;
-    }
-
 
 }
