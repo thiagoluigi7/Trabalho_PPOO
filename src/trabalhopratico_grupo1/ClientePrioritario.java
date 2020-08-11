@@ -29,4 +29,12 @@ public class ClientePrioritario extends Cliente {
         }
     }
 
+    public Evento acessoAfila(int i) {
+        return filaEventos.get(i);
+    }
+
+    public int tamanhoDaFila() {
+        return filaEventos.size();
+    }
+
 }

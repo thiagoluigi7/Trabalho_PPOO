@@ -9,7 +9,7 @@ public class ClienteNormal extends Cliente {
     private ArrayList<Evento> filaEventos;
 
     public ClienteNormal(int _horaChegada) {
-        this.horaChegada = _horaChegada
+        this.horaChegada = _horaChegada;
         geraEventos();
     }
 
@@ -27,6 +27,14 @@ public class ClienteNormal extends Cliente {
             }
             
         }
+    }
+
+    public Evento acessoAfila(int i) {
+        return filaEventos.get(i);
+    }
+
+    public int tamanhoDaFila() {
+        return filaEventos.size();
     }
 
 }
