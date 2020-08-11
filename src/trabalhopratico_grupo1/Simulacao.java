@@ -70,20 +70,19 @@ public class Simulacao {
 
     /**
      * Laço principal, executa enquanto ainda tem clientes na fila do banco.
-     * O primeiro for simula os clientes na fila. O primeiro cliente da uma passo
-     * a frente e procura um atendente livre. Então quando ele encontra ele dá um passo
-     * a frente e começa o atendimento.
+     * A ideia é pegar um cliente pra cada atendente e tirar esses clientes 
+     * da fila de clientes. Assim o atributo clientes só irá mostrar pessoas 
+     * na fila.
      */
     //TODO falta terminar
     private void atendimento() {
-        while (!clientes.isEmpty()) {
-            for (int i=0; i < clientes.size(); i++) {                //O primeiro cliente da fila 
-                for (int j=0; j < atendentes.size(); j++) {          //procura um atendente que 
-                    if (atendentes.get(j).ocupado().equals(false)) { //não está ocupado
-                        atendentes.get(j).atender(clientes.get(i));  //e é então atendido
-                    }
-                }
-            }
+        while (!clientes.isEmpty()) {              
+            for (int j=0; j < atendentes.size(); j++) {           // Percorre os atendentes e aqueles livres atenderão
+                if (atendentes.get(j).ocupado().equals(false)) {  // clientes e esses clientes que serão atendidos vão
+                    atendentes.get(j).atender(clientes.get(0));   // sair da fila.
+                    clientes.remove(0);                           // Atendendo o cliente 0 e sempre remover ele faz com 
+                }                                                 // que sempre o primeiro da fila seja atendido e saia
+            }                                                     // da fila.
         }
     }
 
