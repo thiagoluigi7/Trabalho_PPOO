@@ -41,7 +41,7 @@ public class AtendenteEfetivado extends Atendente {
     /**
      * Verifica se o atendente está ocupado atendendo alguém.
      */
-    public boolean ocupado() {
+    public Boolean ocupado() {
         if (this.ocupado == true) {
             return true;
         } else {
