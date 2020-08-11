@@ -6,7 +6,7 @@ public class Simulacao {
 
     private int tempoAtual;
     private static ArrayList<Cliente> clientes;
-    private ArrayList<Atendente> atendentes;  
+    private static ArrayList<Atendente> atendentes;  
 
     public void simularAgencia() {
         //Abre a agencia
@@ -16,13 +16,17 @@ public class Simulacao {
         //Começa o atendimento
         atendimento();
         //Ao fim do dia o relatório é gerado
-        gerarRelatorio();
+        //gerarRelatorio();
     }
     
     public static void inserirCliente(Cliente cliente){
         clientes.add(cliente);
     }
     
+    public static void inserirAtendente(Atendente atendente){
+        atendentes.add(atendente);
+    }
+
     public int getTempoAtual() {
         return this.tempoAtual;
     }
@@ -54,6 +58,7 @@ public class Simulacao {
      * e o gráfico.
      */
     //TODO
+    /*
     public gerarRelatorio() {
         Estatisticas relatorio = new Estatisticas();
         calcularTempoTotal();
@@ -64,7 +69,7 @@ public class Simulacao {
         calcularTamanhoFilaMedia();
         calcularTamanhoFilaMaximo();
     }
-
+*/
     /**O tempo total é obtido a partir do tempo final. Uma vez que as
      * operações se iniciam no tempo 0 o momento em que elas acabam é
      * o tanto que demorou.

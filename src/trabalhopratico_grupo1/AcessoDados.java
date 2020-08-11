@@ -13,15 +13,20 @@ public class AcessoDados {
                 //Leitura e criação de Atendente
                 String[] numAte = linha.split(",");
 
-                AtendenteEfetivado[] atendenteEfe = new AtendenteEfetivado[Integer.parseInt(numAte[0])];
-                AtendenteEstagiario[] atendenteEst = new AtendenteEstagiario[Integer.parseInt(numAte[1])];
+                //AtendenteEfetivado[] atendenteEfe = new AtendenteEfetivado[Integer.parseInt(numAte[0])];
+                //AtendenteEstagiario[] atendenteEst = new AtendenteEstagiario[Integer.parseInt(numAte[1])];
                 
+                AtendenteEfetivado atendenteEfe = new AtendenteEfetivado();
+                AtendenteEstagiario atendenteEst = new AtendenteEstagiario();
+
                 for(int i=0;i<Integer.parseInt(numAte[0]);i++){
-                    atendenteEfe[i] = new AtendenteEfetivado(); 
+                    atendenteEfe = new AtendenteEfetivado();
+                    Simulacao.inserirAtendente(atendenteEfe);  
                 }
 
                 for(int i=0;i<Integer.parseInt(numAte[1]);i++){
-                    atendenteEst[i] = new AtendenteEstagiario(); 
+                    atendenteEst = new AtendenteEstagiario();
+                    Simulacao.inserirAtendente(atendenteEst); 
                 }
                 
                 linha = arq.readLine();
