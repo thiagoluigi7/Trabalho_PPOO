@@ -4,5 +4,6 @@ public abstract class Cliente {
 
     public abstract Evento acessoAfila(int i);
     public abstract int tamanhoDaFila();
+    public abstract int getHoraChegada();
     
 }

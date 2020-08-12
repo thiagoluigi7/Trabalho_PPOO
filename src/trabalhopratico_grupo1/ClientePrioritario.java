@@ -47,5 +47,13 @@ public class ClientePrioritario extends Cliente {
     public int tamanhoDaFila() {
         return filaEventos.size();
     }
+    
+    /**
+     * Este método retorna a hora em que o cliente chegou.
+     * @return horaChegada
+     */
+    public int getHoraChegada() {
+        return this.horaChegada;
+    }
 
 }

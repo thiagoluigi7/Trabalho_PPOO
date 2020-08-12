@@ -48,4 +48,12 @@ public class ClienteNormal extends Cliente {
         return filaEventos.size();
     }
 
+    /**
+     * Este método retorna a hora em que o cliente chegou.
+     * @return horaChegada
+     */
+    public int getHoraChegada() {
+        return this.horaChegada;
+    }
+
 }
