@@ -7,7 +7,12 @@ public class AtendenteEstagiario extends Atendente {
     private ArrayList<Evento> filaEventosAtendendo;
     private boolean ocupado = false;
     private int delay;
+
+    public AtendenteEstagiario() {
+        filaEventosAtendendo = new ArrayList<Evento>();
+    }
     
+
     /**
      * Este método recebe o cliente e inicia o tratamento, isto é,
      * o atendente passa a estar ocupado,
@@ -20,6 +25,8 @@ public class AtendenteEstagiario extends Atendente {
      * Então para cada evento deverá ser somado o delay.
      * @param Cliente Um cliente.
      */
+    
+    
     //TODO
     public void atender(Cliente umCliente) {
         ocupado = true;

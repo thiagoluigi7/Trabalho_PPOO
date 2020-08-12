@@ -6,23 +6,18 @@ public class AtendenteEfetivado extends Atendente {
     
     private ArrayList<Evento> filaEventosAtendendo;
     private boolean ocupado = false;
+    
+    public AtendenteEfetivado() {
+        filaEventosAtendendo = new ArrayList<Evento>();
+    }
 
-
-
-    /**
-     * Este método recebe o cliente e inicia o tratamento, isto é,
-     * o atendente passa a estar ocupado,
-     * pega todos os eventos do cliente (para tratá-los),
-     * calcula quanto tempo que irá gastar todos os eventos,
-     * adiciona o tempo de receber cliente e dispensar cliente e 
-     * retorna o tempo total gasto.
-     * @param Cliente Um cliente.
-     */
     //TODO
     public void atender(Cliente umCliente) {
         ocupado = true;
         cordialidades(umCliente);
     }
+
+
 
     /**
      * Este método adiciona o evento Receber que é o ato do
@@ -33,7 +28,8 @@ public class AtendenteEfetivado extends Atendente {
      * @param umCliente
      */
     private void cordialidades(Cliente umCliente) {
-        filaEventosAtendendo.add(new Receber());
+        Evento receber = new Receber();
+        filaEventosAtendendo.add(receber);
         popularFila(umCliente);
         filaEventosAtendendo.add(new Despedir());
     }
