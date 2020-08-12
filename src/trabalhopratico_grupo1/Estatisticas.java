@@ -101,8 +101,12 @@ public class Estatisticas {
      * Além disto irá criar uma janela com um gráfico.
      */
     public void escreverRelatorio() {
-        AcessoDados saida = new AcessoDados();
-        saida.escreverArquivo("relatório.txt");
+        try {
+            AcessoDados saida = new AcessoDados();
+            saida.escreverArquivo("relatório.txt");
+        } catch (Exception e) {
+            System.out.println("Erro ao escrever arquivo txt relatório: " + e.getMessage());
+        }
     }
 
 }

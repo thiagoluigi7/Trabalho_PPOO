@@ -18,15 +18,19 @@ public class ClienteNormal extends Cliente {
      * Este método cria aleatoriamente o que o cliente irá fazer.
      */
     private void geraEventos() {
-        Random r = new Random();
-        int quantidade = ( int )( Math.random() * 10 )+1;
-        for (int i = 0; i < quantidade; i++) {
-            if (r.nextInt(2) == 0) {
-                filaEventos.add(new Deposito());
-            } else {
-                filaEventos.add(new Saque());
+        try {
+            Random r = new Random();
+            int quantidade = ( int )( Math.random() * 10 )+1;
+            for (int i = 0; i < quantidade; i++) {
+                if (r.nextInt(2) == 0) {
+                    filaEventos.add(new Deposito());
+                } else {
+                    filaEventos.add(new Saque());
+                }
+                
             }
-            
+        } catch (Exception e) {
+            System.out.println("Erro ao gerar eventos aleatórios do cliente: " + e.getMessage());
         }
     }
 

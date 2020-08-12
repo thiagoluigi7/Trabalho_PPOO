@@ -124,11 +124,15 @@ public class Simulacao {
      * colocados no ArrayList clientes.
      */
     private void recebeDados() {
-        AcessoDados acesso = new AcessoDados();
-        acesso.lerArquivo("dadosEntrada.txt");
-        clientes = acesso.getClientes();
-        atendentes = acesso.getAtendentes();
-        setNumMaxClientes(clientes.size());
+        try {
+            AcessoDados acesso = new AcessoDados();
+            acesso.lerArquivo("dadosEntrada.txt");
+            clientes = acesso.getClientes();
+            atendentes = acesso.getAtendentes();
+            setNumMaxClientes(clientes.size());
+        } catch (Exception e) {
+            System.out.println("Um erro ocorreu ao receber dados: " + e.getMessage());
+        }
     }
 
     /**
@@ -144,26 +148,30 @@ public class Simulacao {
     //TODO falta terminar
     private void atendimento() {
         int contadorFilaEspera;
-        while (!clientes.isEmpty()) {            
-            for (int j=0; j < atendentes.size(); j++) {
-                if (atendentes.get(j).ocupado().equals(false) && atendentes.get(j).getHoraLivre() < clientes.get(0).getHoraChegada()) {
-                    atendentes.get(j).atender(clientes.get(0));
-                    atualizarEventos(atendentes.get(j).registraEventos());
-                    clientes.remove(0);
-                    atendentes.get(j).desocupar();
-                } else { //Todos os atendentes estão ocupados 
-                    filaDeEspera.add(clientes.get(0));
-                    contadorFilaEspera++;
-                    for (int k = 0; k < atendentes.size(); k++) {
-                        min(atendentes.get(j).getHoraLivre()); //return int 20 ex
-                        setTempoDeEspera(getTempoDeEspera() + filaDeEspera.get(0).getHoraChegada() - atendentes.get(j).getHoraLivre());
+        try {
+            while (!clientes.isEmpty()) {            
+                for (int j=0; j < atendentes.size(); j++) {
+                    if (atendentes.get(j).ocupado().equals(false) && atendentes.get(j).getHoraLivre() < clientes.get(0).getHoraChegada()) {
                         atendentes.get(j).atender(clientes.get(0));
                         atualizarEventos(atendentes.get(j).registraEventos());
                         clientes.remove(0);
                         atendentes.get(j).desocupar();
+                    } else { //Todos os atendentes estão ocupados 
+                        filaDeEspera.add(clientes.get(0));
+                        contadorFilaEspera++;
+                        for (int k = 0; k < atendentes.size(); k++) {
+                            min(atendentes.get(j).getHoraLivre()); //return int 20 ex
+                            setTempoDeEspera(getTempoDeEspera() + filaDeEspera.get(0).getHoraChegada() - atendentes.get(j).getHoraLivre());
+                            atendentes.get(j).atender(clientes.get(0));
+                            atualizarEventos(atendentes.get(j).registraEventos());
+                            clientes.remove(0);
+                            atendentes.get(j).desocupar();
+                        }
                     }
                 }
             }
+        } catch (Exception e) {
+            System.out.println("Um erro ocorreu no laço principal: " + e.getMessage());
         }
     }
 
@@ -173,9 +181,14 @@ public class Simulacao {
      * @param _eventos
      */
     private void atualizarEventos(ArrayList<Evento> _eventos) {
-        for (int i=0; i<_eventos.size(); i++) {
-            eventos.add(_eventos.get(i));
+        try {
+            for (int i=0; i<_eventos.size(); i++) {
+                eventos.add(_eventos.get(i));
+            }
+        } catch (Exception e) {
+            System.out.println("Um erro ocorreu ao se atualizar os eventos: " + e.getMessage());
         }
+
     }
 
     /**
@@ -184,15 +197,19 @@ public class Simulacao {
      */
     //TODO
     public void gerarRelatorio() {
-        Estatisticas relatorio = new Estatisticas();
-        relatorio.calcularTempoTotal();
-        relatorio.calcularNumEventos(getEventos());
-        relatorio.calcularTempoMedioEsperaNaFila();
-        relatorio.calcularTamanhoMedioFilaAtendimento();
-        relatorio.calcularTamanhoFilaMax(getNumMaxClientes());
-        relatorio.calcularTempoMedioAtendimento();
-        relatorio.criarGrafico();
-        relatorio.escreverRelatorio();
+        try {
+            Estatisticas relatorio = new Estatisticas();
+            relatorio.calcularTempoTotal();
+            relatorio.calcularNumEventos(getEventos());
+            relatorio.calcularTempoMedioEsperaNaFila();
+            relatorio.calcularTamanhoMedioFilaAtendimento();
+            relatorio.calcularTamanhoFilaMax(getNumMaxClientes());
+            relatorio.calcularTempoMedioAtendimento();
+            relatorio.criarGrafico();
+            relatorio.escreverRelatorio();
+        } catch (Exception e) {
+            System.out.println("Erro ao gerar o relatório: " + e.getMessage());
+        }
     }
 
 }

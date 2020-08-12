@@ -25,9 +25,13 @@ public class AtendenteEfetivado extends Atendente {
      */
     //TODO
     public void atender(Cliente umCliente) {
-        ocupado = true;
-        cordialidades(umCliente);
-        atualizaHoraLivre();
+        try {
+            ocupado = true;
+            cordialidades(umCliente);
+            atualizaHoraLivre();
+        } catch (Exception e) {
+            System.out.println("Erro ao atender o cliente: " + e.getMessage());
+        }
     }
 
     /**
@@ -39,10 +43,14 @@ public class AtendenteEfetivado extends Atendente {
      * @param umCliente
      */
     private void cordialidades(Cliente umCliente) {
-        Evento receber = new Receber();
-        filaEventosAtendendo.add(receber);
-        popularFila(umCliente);
-        filaEventosAtendendo.add(new Despedir());
+        try {
+            Evento receber = new Receber();
+            filaEventosAtendendo.add(receber);
+            popularFila(umCliente);
+            filaEventosAtendendo.add(new Despedir());
+        } catch (Exception e) {
+            System.out.println("Erro ao realizar as cordialidades: " + e.getMessage());
+        }
     }
 
     /**
@@ -61,8 +69,12 @@ public class AtendenteEfetivado extends Atendente {
      * todos os problemas.
      */
     private void atualizaHoraLivre() {
-        for (int i=0; i<filaEventosAtendendo.size(); i++) {
-            horaLivre = horaLivre + filaEventosAtendendo.get(i).getTempo();
+        try {
+            for (int i=0; i<filaEventosAtendendo.size(); i++) {
+                horaLivre = horaLivre + filaEventosAtendendo.get(i).getTempo();
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao atualizar a hora que o atendente estará livre: " + e.getMessage());
         }
     }
 
@@ -90,8 +102,12 @@ public class AtendenteEfetivado extends Atendente {
      * @param umCliente
      */
     private void popularFila(Cliente umCliente) {
-        for (int i=0; i < umCliente.tamanhoDaFila(); i++) {
-            filaEventosAtendendo.add(umCliente.acessoAfila(i));
+        try{
+            for (int i=0; i < umCliente.tamanhoDaFila(); i++) {
+                filaEventosAtendendo.add(umCliente.acessoAfila(i));
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao popular a fila de eventos do atendente: " + e.getMessage());
         }
     }
 
