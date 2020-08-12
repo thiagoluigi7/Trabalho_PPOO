@@ -6,16 +6,20 @@ public class Simulacao {
 
     private int tempoAtual;
     private int numMaxClientes;
+    private int tempoDeEspera;
     private ArrayList<Evento> eventos;
     private ArrayList<Cliente> clientes;
     private ArrayList<Atendente> atendentes;  
+    private ArrayList<Cliente> filaDeEspera;
 
     public Simulacao() {
         this.tempoAtual = 0;
         this.numMaxClientes = 0;
+        this.tempoDeEspera = 0;
         eventos = new ArrayList<Evento>();
         clientes = new ArrayList<Cliente>();
         atendentes = new ArrayList<Atendente>();
+        filaDeEspera = new ArrayList<Cliente>();
     }
     
     /**
@@ -103,6 +107,14 @@ public class Simulacao {
         return this.eventos;
     }
 
+    public int getTempoDeEspera() {
+        return this.tempoDeEspera;
+    }
+
+    public void setTempoDeEspera(int _tempo) {
+        this.tempoDeEspera = _tempo;
+    }
+
     /**
      * Este método lê o arquivo de entrada. Dele é retirado
      * quantos funcionários o banco tem, qual sua categoria,
@@ -131,13 +143,25 @@ public class Simulacao {
      */
     //TODO falta terminar
     private void atendimento() {
+        int contadorFilaEspera;
         while (!clientes.isEmpty()) {            
             for (int j=0; j < atendentes.size(); j++) {
-                if (atendentes.get(j).ocupado().equals(false)) {
+                if (atendentes.get(j).ocupado().equals(false) && atendentes.get(j).getHoraLivre() < clientes.get(0).getHoraChegada()) {
                     atendentes.get(j).atender(clientes.get(0));
                     atualizarEventos(atendentes.get(j).registraEventos());
                     clientes.remove(0);
                     atendentes.get(j).desocupar();
+                } else { //Todos os atendentes estão ocupados 
+                    filaDeEspera.add(clientes.get(0));
+                    contadorFilaEspera++;
+                    for (int k = 0; k < atendentes.size(); k++) {
+                        min(atendentes.get(j).getHoraLivre()); //return int 20 ex
+                        setTempoDeEspera(getTempoDeEspera() + filaDeEspera.get(0).getHoraChegada() - atendentes.get(j).getHoraLivre());
+                        atendentes.get(j).atender(clientes.get(0));
+                        atualizarEventos(atendentes.get(j).registraEventos());
+                        clientes.remove(0);
+                        atendentes.get(j).desocupar();
+                    }
                 }
             }
         }
