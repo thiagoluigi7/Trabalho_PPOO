@@ -10,6 +10,14 @@ public class Simulacao {
     private ArrayList<Cliente> clientes;
     private ArrayList<Atendente> atendentes;  
 
+    public Simulacao() {
+        this.tempoAtual = 0;
+        eventos = new ArrayList<Evento>();
+        clientes = new ArrayList<Cliente>();
+        atendentes = new ArrayList<Atendente>();
+    }
+    
+    
     /**
      * Este método inicia a simulação como uma main.
      * Ele irá definir o tempo em que o banco inicia
@@ -21,7 +29,6 @@ public class Simulacao {
      */
     public void simularAgencia() {
         //Abre a agencia
-        tempoAtual = 0;
         //Recebe todos os dados do arquivo
         recebeDados();
         //Começa o atendimento

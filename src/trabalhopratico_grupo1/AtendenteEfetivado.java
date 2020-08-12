@@ -9,7 +9,7 @@ public class AtendenteEfetivado extends Atendente {
 
     public AtendenteEfetivado () {
         this.ocupado = false;
-        this.filaEventosAtendendo = new ArrayList<Evento>();
+        filaEventosAtendendo = new ArrayList<Evento>();
     }
 
 
