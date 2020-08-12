@@ -64,7 +64,8 @@ public class Estatisticas {
      * @return tamanhoFilaMax
      */
     //TODO
-    public double calcularTamanhoFilaMax() {
+    public double calcularTamanhoFilaMax(int _numClientes) {
+        this.tamanhoFilaMax = _numClientes;
         return tamanhoFilaMax;
     }
 

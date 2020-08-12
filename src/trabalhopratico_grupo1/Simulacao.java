@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Simulacao {
 
     private int tempoAtual;
+    private int numMaxClientes;
     private ArrayList<Evento> eventos;
     private ArrayList<Cliente> clientes;
     private ArrayList<Atendente> atendentes;  
@@ -42,6 +43,14 @@ public class Simulacao {
         this.tempoAtual = tempoAtual + _tempo;
     }
 
+    public int getNumMaxClientes() {
+        return this.numMaxClientes;
+    }
+
+    public void setNumMaxClientes(int _num) {
+        this.numMaxClientes = _num;
+    }
+
     public ArrayList<Cliente> getClientes() {
         return this.clientes;
     }
@@ -69,6 +78,7 @@ public class Simulacao {
         acesso.lerArquivo("dadosEntrada.txt");
         clientes = acesso.getClientes();
         atendentes = acesso.getAtendentes();
+        setNumMaxClientes(clientes.size());
     }
 
     /**
@@ -108,7 +118,7 @@ public class Simulacao {
         relatorio.calcularNumEventos(getEventos());
         relatorio.calcularTempoMedioEsperaNaFila();
         relatorio.calcularTamanhoMedioFilaAtendimento();
-        relatorio.calcularTamanhoFilaMax();
+        relatorio.calcularTamanhoFilaMax(getNumMaxClientes());
         relatorio.calcularTempoMedioAtendimento();
         relatorio.criarGrafico();
         relatorio.escreverRelatorio();
