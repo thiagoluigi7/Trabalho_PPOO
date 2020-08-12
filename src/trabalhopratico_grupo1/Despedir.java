@@ -4,10 +4,14 @@ public class Despedir extends Evento {
     
     private int tempo;
 
-    public Despedir(){
+    public Despedir() {
         setTempoInicial();
     }
 
+    /**
+     * Este método gera aleatoriamente o tempo que irá 
+     * levar para se fazer o evento.
+     */
     private void setTempoInicial() {
         this.tempo = ( int )( Math.random() * 5 )+1;
     }

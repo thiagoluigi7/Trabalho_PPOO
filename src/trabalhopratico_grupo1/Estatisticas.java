@@ -12,6 +12,14 @@ public class Estatisticas {
     private int tamanhoFilaMax;
     private double tempoMedioAtendimento;
     
+    public Estatisticas() {
+        this.tempoTotal = 0;
+        this.numEventos = 0;
+        this.tempoMedioEsperaNaFila = 0;
+        this.tamanhoMedioFilaAtendimento = 0;
+        this.tamanhoFilaMax = 0;
+        this.tempoMedioAtendimento = 0;
+    }
 
     /**
      * Este método retornará o tempo total gasto na simulção. Lembrando

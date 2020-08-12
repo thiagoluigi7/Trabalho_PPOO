@@ -4,10 +4,14 @@ public class Receber extends Evento {
     
     private int tempo;
 
-    public Receber(){
+    public Receber() {
         setTempoInicial();
     }
 
+    /**
+     * Este método gera aleatoriamente o tempo que irá 
+     * levar para se fazer o evento.
+     */
     private void setTempoInicial() {
         this.tempo = ( int )( Math.random() * 5 )+1;
     }

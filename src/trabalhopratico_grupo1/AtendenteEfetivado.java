@@ -12,7 +12,6 @@ public class AtendenteEfetivado extends Atendente {
         filaEventosAtendendo = new ArrayList<Evento>();
     }
 
-
     /**
      * Este método recebe o cliente e inicia o tratamento, isto é,
      * o atendente passa a estar ocupado,
@@ -29,8 +28,6 @@ public class AtendenteEfetivado extends Atendente {
         
     }
 
-
-
     /**
      * Este método adiciona o evento Receber que é o ato do
      * atentende do banco receber o cliente em sua mesa.
@@ -46,6 +43,12 @@ public class AtendenteEfetivado extends Atendente {
         filaEventosAtendendo.add(new Despedir());
     }
 
+    /**
+     * Retorna a fila de eventos que o atendente está trabalhando
+     * para adicionar na fila de eventos que a simulação tratou.
+     * É usado nas estatísticas e para "histórico".
+     * @return ArrayList<Evento> filaEventosAtendendo
+     */
     public ArrayList<Evento> registraEventos() {
         return filaEventosAtendendo;
     }
@@ -61,16 +64,22 @@ public class AtendenteEfetivado extends Atendente {
         }
     }
 
+    /**
+     * Libera o atendente após terminar com um cliente.
+     */
     public void desocupar() {
         this.ocupado = false;
     }
 
+    /**
+     * Este método popula a fila de eventos do atendente com
+     * os eventos que o cliente irá fazer.
+     * @param umCliente
+     */
     private void popularFila(Cliente umCliente) {
         for (int i=0; i < umCliente.tamanhoDaFila(); i++) {
             filaEventosAtendendo.add(umCliente.acessoAfila(i));
         }
     }
-
-     
 
 }

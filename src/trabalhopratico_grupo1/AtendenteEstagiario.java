@@ -25,8 +25,6 @@ public class AtendenteEstagiario extends Atendente {
      * Então para cada evento deverá ser somado o delay.
      * @param Cliente Um cliente.
      */
-    
-    
     //TODO
     public void atender(Cliente umCliente) {
         ocupado = true;
@@ -46,6 +44,9 @@ public class AtendenteEstagiario extends Atendente {
         }
     }
 
+    /**
+    * Libera o atendente após terminar com um cliente.
+    */
     public void desocupar() {
         this.ocupado = false;
     }
@@ -64,16 +65,32 @@ public class AtendenteEstagiario extends Atendente {
         filaEventosAtendendo.add(new Despedir());
     }
 
+    /**
+     * Retorna a fila de eventos que o atendente está trabalhando
+     * para adicionar na fila de eventos que a simulação tratou.
+     * É usado nas estatísticas e para "histórico".
+     * @return ArrayList<Evento> filaEventosAtendendo
+     */
     public ArrayList<Evento> registraEventos() {
         return filaEventosAtendendo;
     }
 
+    /**
+     * Este método popula a fila de eventos do atendente com
+     * os eventos que o cliente irá fazer.
+     * @param umCliente
+     */
     private void popularFila(Cliente umCliente) {
         for (int i=0; i < umCliente.tamanhoDaFila(); i++) {
             filaEventosAtendendo.add(umCliente.acessoAfila(i));
         }
     }
 
+    /**
+     * Este método adiciona um delay nas operações realizadas pelo 
+     * atendente estagiário. Pois como é estagiário ele leva mais
+     * tempo para realizar as tarefas do que um atendente efetivado.
+     */
     private void adicionarDelay() {
         for (int i=0; i<filaEventosAtendendo.size(); i++) {
             int tempo = filaEventosAtendendo.get(i).getTempo();
