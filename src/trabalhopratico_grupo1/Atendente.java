@@ -8,6 +8,7 @@ public abstract class Atendente {
     public abstract ArrayList<Evento> registraEventos();
     public abstract Boolean ocupado();
     public abstract void desocupar();
+    public abstract int getHoraLivre();
 
 
 }

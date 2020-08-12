@@ -7,10 +7,12 @@ public class AtendenteEstagiario extends Atendente {
     private ArrayList<Evento> filaEventosAtendendo;
     private boolean ocupado;
     private int delay;
+    private int horaLivre;
     
     public AtendenteEstagiario() {
         this.ocupado = false;
         filaEventosAtendendo = new ArrayList<Evento>();
+        this.horaLivre = 0;
     }
 
     /**
@@ -30,25 +32,8 @@ public class AtendenteEstagiario extends Atendente {
         ocupado = true;
         cordialidades(umCliente);
         adicionarDelay();
+        atualizaHoraLivre();
         
-    }
-
-    /**
-    * Verifica se o atendente está ocupado atendendo alguém.
-    */
-    public Boolean ocupado() {
-        if (this.ocupado == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-    * Libera o atendente após terminar com um cliente.
-    */
-    public void desocupar() {
-        this.ocupado = false;
     }
 
     /**
@@ -76,6 +61,35 @@ public class AtendenteEstagiario extends Atendente {
     }
 
     /**
+     * Este método atualiza a hora em que o atendente estará
+     * livre com base no tempo que será gasto para resolver
+     * todos os problemas.
+     */
+    private void atualizaHoraLivre() {
+        for (int i=0; i<filaEventosAtendendo.size(); i++) {
+            horaLivre = horaLivre + filaEventosAtendendo.get(i).getTempo();
+        }
+    }
+
+    /**
+     * Verifica se o atendente está ocupado atendendo alguém.
+     */
+    public Boolean ocupado() {
+        if (this.ocupado == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Libera o atendente após terminar com um cliente.
+     */
+    public void desocupar() {
+        this.ocupado = false;
+    }
+
+    /**
      * Este método popula a fila de eventos do atendente com
      * os eventos que o cliente irá fazer.
      * @param umCliente
@@ -99,6 +113,15 @@ public class AtendenteEstagiario extends Atendente {
             novoEvento.setTempo(tempo);
             filaEventosAtendendo.set(i, novoEvento);
         }
+    }
+
+    /**
+     * Este método retorna a hora em que o atendente estará livre
+     * para atender outro cliente.
+     * @return horaLivre
+     */
+    public int getHoraLivre() {
+        return this.horaLivre;
     }
 
 }

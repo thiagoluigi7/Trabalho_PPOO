@@ -6,10 +6,12 @@ public class AtendenteEfetivado extends Atendente {
     
     private ArrayList<Evento> filaEventosAtendendo;
     private boolean ocupado;
+    private int horaLivre;
 
     public AtendenteEfetivado () {
         this.ocupado = false;
         filaEventosAtendendo = new ArrayList<Evento>();
+        this.horaLivre = 0;
     }
 
     /**
@@ -25,7 +27,7 @@ public class AtendenteEfetivado extends Atendente {
     public void atender(Cliente umCliente) {
         ocupado = true;
         cordialidades(umCliente);
-        
+        atualizaHoraLivre();
     }
 
     /**
@@ -51,6 +53,17 @@ public class AtendenteEfetivado extends Atendente {
      */
     public ArrayList<Evento> registraEventos() {
         return filaEventosAtendendo;
+    }
+
+    /**
+     * Este método atualiza a hora em que o atendente estará
+     * livre com base no tempo que será gasto para resolver
+     * todos os problemas.
+     */
+    private void atualizaHoraLivre() {
+        for (int i=0; i<filaEventosAtendendo.size(); i++) {
+            horaLivre = horaLivre + filaEventosAtendendo.get(i).getTempo();
+        }
     }
 
     /**
@@ -80,6 +93,15 @@ public class AtendenteEfetivado extends Atendente {
         for (int i=0; i < umCliente.tamanhoDaFila(); i++) {
             filaEventosAtendendo.add(umCliente.acessoAfila(i));
         }
+    }
+
+    /**
+     * Este método retorna a hora em que o atendente estará livre
+     * para atender outro cliente.
+     * @return horaLivre
+     */
+    public int getHoraLivre() {
+        return this.horaLivre;
     }
 
 }
