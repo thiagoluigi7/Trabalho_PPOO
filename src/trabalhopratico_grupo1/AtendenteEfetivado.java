@@ -29,6 +29,8 @@ public class AtendenteEfetivado extends Atendente {
         
     }
 
+
+
     /**
      * Este método adiciona o evento Receber que é o ato do
      * atentende do banco receber o cliente em sua mesa.
@@ -38,7 +40,8 @@ public class AtendenteEfetivado extends Atendente {
      * @param umCliente
      */
     private void cordialidades(Cliente umCliente) {
-        filaEventosAtendendo.add(new Receber());
+        Evento receber = new Receber();
+        filaEventosAtendendo.add(receber);
         popularFila(umCliente);
         filaEventosAtendendo.add(new Despedir());
     }

@@ -25,6 +25,8 @@ public class AtendenteEstagiario extends Atendente {
      * Então para cada evento deverá ser somado o delay.
      * @param Cliente Um cliente.
      */
+    
+    
     //TODO
     public void atender(Cliente umCliente) {
         ocupado = true;
