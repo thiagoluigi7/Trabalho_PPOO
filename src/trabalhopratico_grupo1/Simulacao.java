@@ -147,7 +147,7 @@ public class Simulacao {
      */
     //TODO falta terminar
     private void atendimento() {
-        int contadorFilaEspera;
+        int contadorFilaEspera = 0;
         try {
             while (!clientes.isEmpty()) {            
                 for (int j=0; j < atendentes.size(); j++) {
@@ -160,7 +160,7 @@ public class Simulacao {
                         filaDeEspera.add(clientes.get(0));
                         contadorFilaEspera++;
                         for (int k = 0; k < atendentes.size(); k++) {
-                            min(atendentes.get(j).getHoraLivre()); //return int 20 ex
+                            //min(atendentes.get(j).getHoraLivre()); //return int 20 ex
                             setTempoDeEspera(getTempoDeEspera() + filaDeEspera.get(0).getHoraChegada() - atendentes.get(j).getHoraLivre());
                             atendentes.get(j).atender(clientes.get(0));
                             atualizarEventos(atendentes.get(j).registraEventos());

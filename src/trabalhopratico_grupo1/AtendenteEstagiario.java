@@ -130,6 +130,7 @@ public class AtendenteEstagiario extends Atendente {
                 novoEvento.setTempo(tempo);
                 filaEventosAtendendo.set(i, novoEvento);
             }
+        }
         catch (Exception e) {
             System.out.println("Erro ao adicionar o delay oriundo da falta de experiência do atendente: " + e.getMessage());
         }
