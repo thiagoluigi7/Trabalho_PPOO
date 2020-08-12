@@ -5,8 +5,9 @@ import java.util.ArrayList;
 public class Simulacao {
 
     private int tempoAtual;
-    private static ArrayList<Cliente> clientes;
-    private static ArrayList<Atendente> atendentes;  
+    private ArrayList<Evento> eventos;
+    private ArrayList<Cliente> clientes;
+    private ArrayList<Atendente> atendentes;  
 
     /**
      * Este método inicia a simulação como uma main.
@@ -37,6 +38,24 @@ public class Simulacao {
         return this.tempoAtual;
     }
 
+    public void setTempoAtual(int _tempo) {
+        this.tempoAtual = tempoAtual + _tempo;
+    }
+
+    public ArrayList<Cliente> getClientes() {
+        return this.clientes;
+    }
+
+    public ArrayList<Atendente> getAtendentes() {
+        return this.atendentes;
+    }
+
+    public ArrayList<Evento> getEventos() {
+        return this.eventos;
+    }
+
+
+
     /**
      * Este método lê o arquivo de entrada. Dele é retirado
      * quantos funcionários o banco tem, qual sua categoria,
@@ -61,12 +80,20 @@ public class Simulacao {
     //TODO falta terminar
     private void atendimento() {
         while (!clientes.isEmpty()) {              
-            for (int j=0; j < atendentes.size(); j++) {           // Percorre os atendentes e aqueles livres atenderão
-                if (atendentes.get(j).ocupado().equals(false)) {  // clientes e esses clientes que serão atendidos vão
-                    atendentes.get(j).atender(clientes.get(0));   // sair da fila.
-                    clientes.remove(0);                           // Atendendo o cliente 0 e sempre remover ele faz com 
-                }                                                 // que sempre o primeiro da fila seja atendido e saia
-            }                                                     // da fila.
+            for (int j=0; j < atendentes.size(); j++) {                     // Percorre os atendentes e aqueles livres atenderão
+                if (atendentes.get(j).ocupado().equals(false)) {            // clientes e esses clientes que serão atendidos vão
+                    atendentes.get(j).atender(clientes.get(0));
+                    atualizarEventos(atendentes.get(j).registraEventos());   
+                    clientes.remove(0);                                     // sair da fila.
+                                                                            // Atendendo o cliente 0 e sempre remover ele faz com 
+                }                                                           // que sempre o primeiro da fila seja atendido e saia
+            }                                                               // da fila.
+        }
+    }
+
+    private void atualizarEventos(ArrayList<Evento> _eventos) {
+        for (int i=0; i<_eventos.size(); i++) {
+            eventos.add(_eventos.get(i));
         }
     }
 
@@ -78,12 +105,13 @@ public class Simulacao {
     public void gerarRelatorio() {
         Estatisticas relatorio = new Estatisticas();
         relatorio.calcularTempoTotal();
-        relatorio.calcularNumEventos();
+        relatorio.calcularNumEventos(getEventos());
         relatorio.calcularTempoMedioEsperaNaFila();
         relatorio.calcularTamanhoMedioFilaAtendimento();
         relatorio.calcularTamanhoFilaMax();
         relatorio.calcularTempoMedioAtendimento();
         relatorio.criarGrafico();
+        relatorio.escreverRelatorio();
     }
 
 }

@@ -5,9 +5,14 @@ import java.util.ArrayList;
 public class AtendenteEstagiario extends Atendente {
 
     private ArrayList<Evento> filaEventosAtendendo;
-    private boolean ocupado = false;
+    private boolean ocupado;
     private int delay;
     
+    public AtendenteEstagiario() {
+        this.ocupado = false;
+        this.filaEventosAtendendo = new ArrayList<Evento>();
+    }
+
     /**
      * Este método recebe o cliente e inicia o tratamento, isto é,
      * o atendente passa a estar ocupado,
@@ -51,6 +56,10 @@ public class AtendenteEstagiario extends Atendente {
         filaEventosAtendendo.add(new Receber());
         popularFila(umCliente);
         filaEventosAtendendo.add(new Despedir());
+    }
+
+    public ArrayList<Evento> registraEventos() {
+        return filaEventosAtendendo;
     }
 
     private void popularFila(Cliente umCliente) {

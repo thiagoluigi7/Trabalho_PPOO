@@ -5,8 +5,12 @@ import java.util.ArrayList;
 public class AtendenteEfetivado extends Atendente {
     
     private ArrayList<Evento> filaEventosAtendendo;
-    private boolean ocupado = false;
+    private boolean ocupado;
 
+    public AtendenteEfetivado () {
+        this.ocupado = false;
+        this.filaEventosAtendendo = new ArrayList<Evento>();
+    }
 
 
     /**
@@ -22,6 +26,7 @@ public class AtendenteEfetivado extends Atendente {
     public void atender(Cliente umCliente) {
         ocupado = true;
         cordialidades(umCliente);
+        
     }
 
     /**
@@ -36,6 +41,10 @@ public class AtendenteEfetivado extends Atendente {
         filaEventosAtendendo.add(new Receber());
         popularFila(umCliente);
         filaEventosAtendendo.add(new Despedir());
+    }
+
+    public ArrayList<Evento> registraEventos() {
+        return filaEventosAtendendo;
     }
 
     /**

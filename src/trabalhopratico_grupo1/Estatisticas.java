@@ -1,5 +1,6 @@
 package trabalhopratico_grupo1;
 
+import java.util.ArrayList;
 import org.jfree.chart.JFreeChart;
 
 public class Estatisticas {
@@ -30,7 +31,8 @@ public class Estatisticas {
      * @return numEventos
      */
     //TODO
-    public int calcularNumEventos() {
+    public int calcularNumEventos(ArrayList<Evento> _eventos) {
+        this.numEventos = _eventos.size();
         return numEventos;
     }
 
