@@ -61,6 +61,10 @@ public class AtendenteEfetivado extends Atendente {
         }
     }
 
+    public void desocupar() {
+        this.ocupado = false;
+    }
+
     private void popularFila(Cliente umCliente) {
         for (int i=0; i < umCliente.tamanhoDaFila(); i++) {
             filaEventosAtendendo.add(umCliente.acessoAfila(i));

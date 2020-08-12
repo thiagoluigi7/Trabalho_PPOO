@@ -96,13 +96,13 @@ public class Simulacao {
      */
     //TODO falta terminar
     private void atendimento() {
-        while (!clientes.isEmpty()) {              
+        while (!clientes.isEmpty()) {            
             for (int j=0; j < atendentes.size(); j++) {                     // Percorre os atendentes e aqueles livres atenderão
                 if (atendentes.get(j).ocupado().equals(false)) {            // clientes e esses clientes que serão atendidos vão
                     atendentes.get(j).atender(clientes.get(0));
                     atualizarEventos(atendentes.get(j).registraEventos());   
                     clientes.remove(0);                                     // sair da fila.
-                                                                            // Atendendo o cliente 0 e sempre remover ele faz com 
+                    atendentes.get(j).desocupar();                          // Atendendo o cliente 0 e sempre remover ele faz com 
                 }                                                           // que sempre o primeiro da fila seja atendido e saia
             }                                                               // da fila.
         }

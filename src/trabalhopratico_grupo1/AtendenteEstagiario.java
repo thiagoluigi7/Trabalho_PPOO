@@ -46,6 +46,10 @@ public class AtendenteEstagiario extends Atendente {
         }
     }
 
+    public void desocupar() {
+        this.ocupado = false;
+    }
+
     /**
      * Este método adiciona o evento Receber que é o ato do
      * atentende do banco receber o cliente em sua mesa.
