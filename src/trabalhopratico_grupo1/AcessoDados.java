@@ -14,6 +14,11 @@ public class AcessoDados {
         atendentes = new ArrayList<Atendente>();        
     }
     
+    /**
+     * Esse método ler o arquivo de entrada e cria os vetores dos respectivos valores
+     * @param arquivo 
+     */
+    
     public void lerArquivo(String arquivo) {
 
         try{
@@ -91,8 +96,17 @@ public class AcessoDados {
         return atendentes;
     }
     
-    //TODO
-    public void escreverArquivo(String nomeArquivo,int tempoTotal,int numEventos,double tempoMedioEsperaNaFila,double tamanhoMedioFilaAtendimento,double tamanhoFilaMax,double tempoMedioAtendimento) {
+    /**
+     * Esse método gera o arquivo texto com o relatório dos dados da simulação
+     * @param nomeArquivo
+     * @param tempoTotal
+     * @param numEventos
+     * @param tempoMedioEsperaNaFila
+     * @param tamanhoMedioFilaAtendimento
+     * @param tamanhoFilaMax
+     * @param tempoMedioAtendimento 
+     */
+    public void escreverArquivo(String nomeArquivo,int tempoTotal,int numEventos,double tempoMedioEsperaNaFila,double tamanhoMedioFilaAtendimento,int tamanhoFilaMax,double tempoMedioAtendimentoClienteNormal,double tempoMedioAtendimentoClientePrioritario,double tempoMedioAtendimento) {
         Estatisticas est = new Estatisticas();
         try{
             FileWriter arq = new FileWriter(nomeArquivo);
@@ -100,10 +114,11 @@ public class AcessoDados {
     
             arq.write("Tempo total: " + tempoTotal +"\n");
             arq.write("Numero total de Eventos: " + numEventos +"\n");
-            arq.write("Tempo médio de espera na fila de atendimento : " + tempoMedioEsperaNaFila +"\n");
+            arq.write("Tempo médio de espera na fila de atendimento : " + tempoMedioAtendimento +"\n");
             arq.write("Tamanho médio da fila de atendimento: " + tamanhoMedioFilaAtendimento +"\n");
             arq.write("Tamanho máximo da fila de atendimento: " + tamanhoFilaMax +"\n");
-            arq.write("Tempo médio de atendimento de cada tipo de cliente: " + tempoMedioAtendimento +"\n");
+            arq.write("Tempo médio de atendimento do cliente normal: " + tempoMedioAtendimentoClienteNormal +"\n");
+            arq.write("Tempo médio de atendimento do cliente prioritario: " + tempoMedioAtendimentoClientePrioritario +"\n");
         
  
             arq.close();

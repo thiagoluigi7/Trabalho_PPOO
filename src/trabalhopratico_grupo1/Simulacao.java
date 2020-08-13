@@ -6,7 +6,12 @@ public class Simulacao {
 
     private int tempoAtual;
     private int numMaxClientes;
-    private int tempoDeEspera;
+    private int tempoDeEsperaTotal;
+    private int tempoDeEsperaClienteNormal;
+    private int tempoDeEsperaClientePrioritario;
+    private int contadorFilaEspera;
+    private int contadorFilaClienteN;
+    private int contadorFilaClienteP;
     private ArrayList<Evento> eventos;
     private ArrayList<Cliente> clientes;
     private ArrayList<Atendente> atendentes;  
@@ -15,7 +20,10 @@ public class Simulacao {
     public Simulacao() {
         this.tempoAtual = 0;
         this.numMaxClientes = 0;
-        this.tempoDeEspera = 0;
+        this.tempoDeEsperaTotal = 0;
+        this.contadorFilaEspera = 0;
+        this.contadorFilaClienteN = 0;
+        this.contadorFilaClienteP = 0;
         eventos = new ArrayList<Evento>();
         clientes = new ArrayList<Cliente>();
         atendentes = new ArrayList<Atendente>();
@@ -107,14 +115,34 @@ public class Simulacao {
         return this.eventos;
     }
 
-    public int getTempoDeEspera() {
-        return this.tempoDeEspera;
+    public int getTempoDeEsperaClienteNormal() {
+        return tempoDeEsperaClienteNormal;
     }
 
-    public void setTempoDeEspera(int _tempo) {
-        this.tempoDeEspera = _tempo;
+    public int getTempoDeEsperaClientePrioritario() {
+        return tempoDeEsperaClientePrioritario;
     }
 
+    public int getContadorFilaEspera() {
+        return contadorFilaEspera;
+    }
+
+    public int getContadorFilaClienteN() {
+        return contadorFilaClienteN;
+    }
+
+    public int getContadorFilaClienteP() {
+        return contadorFilaClienteP;
+    }
+
+    public int getTempoDeEsperaTotal() {
+        return this.tempoDeEsperaTotal;
+    }
+    /*
+    public void setTempoDeEsperaTotal(int _tempo) {
+        this.tempoDeEsperaTotal = _tempo;
+    }
+    */
     /**
      * Este método lê o arquivo de entrada. Dele é retirado
      * quantos funcionários o banco tem, qual sua categoria,
@@ -147,7 +175,6 @@ public class Simulacao {
      */
     //TODO falta terminar
     private void atendimento() {
-        int contadorFilaEspera = 0;
         int min;
         try {
             while (!clientes.isEmpty()) {            
@@ -156,13 +183,20 @@ public class Simulacao {
                         atendentes.get(j).atender(clientes.get(0));
                         atualizarEventos(atendentes.get(j).registraEventos());
                         clientes.remove(0);
-                        atendentes.get(j).desocupar();
-                    } else { //Todos os atendentes estão ocupados 
+                        //atendentes.get(j).desocupar();
+                    } else { //Todos os atendentes estão ocupados
                         filaDeEspera.add(clientes.get(0));
                         contadorFilaEspera++;
                         for (int k = 0; k < atendentes.size(); k++) {
-                            min = menorHoraLivre(atendentes); //min(atendentes.get(j).getHoraLivre()); //return int 20 ex
-                            setTempoDeEspera(getTempoDeEspera() + filaDeEspera.get(0).getHoraChegada() - atendentes.get(j).getHoraLivre());
+                            min = menorHoraLivre(atendentes);
+                            if(clientes.get(0) instanceof ClienteNormal ){
+                                contadorFilaClienteN++;
+                                tempoDeEsperaClienteNormal = tempoDeEsperaClienteNormal + filaDeEspera.get(0).getHoraChegada() - atendentes.get(j).getHoraLivre();
+                            }else{
+                                contadorFilaClienteP++;
+                                tempoDeEsperaClientePrioritario = tempoDeEsperaClientePrioritario + filaDeEspera.get(0).getHoraChegada() - atendentes.get(j).getHoraLivre();
+                            }
+                            tempoDeEsperaTotal = tempoDeEsperaTotal + filaDeEspera.get(0).getHoraChegada() - atendentes.get(j).getHoraLivre();
                             atendentes.get(j).atender(clientes.get(0));
                             atualizarEventos(atendentes.get(j).registraEventos());
                             clientes.remove(0);
@@ -171,6 +205,7 @@ public class Simulacao {
                     }
                 }
             }
+            tempoAtual = maiorHoraLivre(atendentes);
         } catch (Exception e) {
             System.out.println("Um erro ocorreu no laço principal: " + e.getMessage());
         }
@@ -200,12 +235,14 @@ public class Simulacao {
     public void gerarRelatorio() {
         try {
             Estatisticas relatorio = new Estatisticas();
-            relatorio.calcularTempoTotal();
+            relatorio.calcularTempoTotal(tempoAtual);
             relatorio.calcularNumEventos(getEventos());
             relatorio.calcularTempoMedioEsperaNaFila();
             relatorio.calcularTamanhoMedioFilaAtendimento();
             relatorio.calcularTamanhoFilaMax(getNumMaxClientes());
-            relatorio.calcularTempoMedioAtendimento();
+            relatorio.calcularTempoMedioAtendimento(tempoDeEsperaTotal,numMaxClientes);
+            relatorio.calcularTempoMedioAtendimentoClienteNormal(tempoDeEsperaClienteNormal, contadorFilaClienteN);
+            relatorio.calcularTempoMedioAtendimentoClientePrioritario(tempoDeEsperaClientePrioritario, contadorFilaClienteP);
             relatorio.criarGrafico();
             relatorio.escreverRelatorio();
         } catch (Exception e) {
@@ -220,7 +257,7 @@ public class Simulacao {
      * @return int menor
      */
     public int menorHoraLivre(ArrayList<Atendente> _atendentes) {
-        int menor = 1000;
+        int menor = 1000000;
         for (int i=0; i < _atendentes.size(); i++) {
             if (_atendentes.get(i).getHoraLivre() < menor) {
                 menor = _atendentes.get(i).getHoraLivre();
@@ -229,4 +266,18 @@ public class Simulacao {
         return menor;
     }
 
+        /**
+     * Este método percorre a lista de atendentes e retorna o maior horario
+     * @param ArrayList<Atendente> atendentes
+     * @return int menor
+     */
+    public int maiorHoraLivre(ArrayList<Atendente> _atendentes) {
+        int maior = 0;
+        for (int i=0; i < _atendentes.size(); i++) {
+            if (_atendentes.get(i).getHoraLivre() > maior) {
+                maior = _atendentes.get(i).getHoraLivre();
+            }
+        }
+        return maior;
+    }
 }

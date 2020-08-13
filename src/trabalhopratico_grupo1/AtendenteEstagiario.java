@@ -27,7 +27,6 @@ public class AtendenteEstagiario extends Atendente {
      * Então para cada evento deverá ser somado o delay.
      * @param Cliente Um cliente.
      */
-    //TODO
     public void atender(Cliente umCliente) {
         try {
             ocupado = true;
@@ -97,6 +96,7 @@ public class AtendenteEstagiario extends Atendente {
     /**
      * Libera o atendente após terminar com um cliente.
      */
+    
     public void desocupar() {
         this.ocupado = false;
     }

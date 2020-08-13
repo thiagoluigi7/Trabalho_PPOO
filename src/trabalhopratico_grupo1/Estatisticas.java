@@ -11,6 +11,8 @@ public class Estatisticas {
     private double tamanhoMedioFilaAtendimento;
     private int tamanhoFilaMax;
     private double tempoMedioAtendimento;
+    private double tempoMedioAtendimentoClientePrioritario;
+    private double tempoMedioAtendimentoClienteNormal;
     
     public Estatisticas() {
         this.tempoTotal = 0;
@@ -19,6 +21,8 @@ public class Estatisticas {
         this.tamanhoMedioFilaAtendimento = 0;
         this.tamanhoFilaMax = 0;
         this.tempoMedioAtendimento = 0;
+        this.tempoMedioAtendimentoClientePrioritario = 0;
+        this.tempoMedioAtendimentoClienteNormal = 0;
     }
 
     /**
@@ -29,7 +33,8 @@ public class Estatisticas {
      * @return tempoTotal 
      */
     //TODO
-    public int calcularTempoTotal() {
+    public int calcularTempoTotal(int tempoAtual) {
+        tempoTotal = tempoAtual;
         return tempoTotal;
     }
 
@@ -71,7 +76,6 @@ public class Estatisticas {
      * clientes antes de acontecer o primeiro atendimento.
      * @return tamanhoFilaMax
      */
-    //TODO
     public double calcularTamanhoFilaMax(int _numClientes) {
         this.tamanhoFilaMax = _numClientes;
         return tamanhoFilaMax;
@@ -81,11 +85,32 @@ public class Estatisticas {
      * Este método calcula quanto tempo demora cada atendimento em média.
      * @return tempoMedioAtendimento
      */
-    //TODO
-    public double calcularTempoMedioAtendimento() {
+
+    public double calcularTempoMedioAtendimento(int tempoDeEsperaTotal,int numMaxClientes) {
+        tempoMedioAtendimento = tempoDeEsperaTotal/numMaxClientes;
         return tempoMedioAtendimento;
     }
 
+        /**
+     * Este método calcula quanto tempo demora cada atendimento do cliente normal.
+     * @return tempoMedioAtendimento
+     */
+
+    public double calcularTempoMedioAtendimentoClienteNormal(int tempoDeEsperaClienteNormal,int contadorFilaClienteN) {
+        tempoMedioAtendimentoClienteNormal = tempoDeEsperaClienteNormal/contadorFilaClienteN;
+        return tempoMedioAtendimentoClienteNormal;
+    }
+    /**
+     * Este método calcula quanto tempo demora cada atendimento em média.
+     * @return tempoMedioAtendimentoClientePrioritario
+     */
+
+    public double calcularTempoMedioAtendimentoClientePrioritario(int tempoDeEsperaClientePrioritario,int contadorFilaClienteP) {
+        tempoMedioAtendimentoClientePrioritario = tempoDeEsperaClientePrioritario/contadorFilaClienteP;
+        
+        return tempoMedioAtendimentoClientePrioritario;
+    }
+    
     /**
      * Este método criará uma janela com um gráfico nela.
      */
@@ -127,7 +152,7 @@ public class Estatisticas {
     public void escreverRelatorio() {
         try {
             AcessoDados saida = new AcessoDados();
-            saida.escreverArquivo("relatório.txt",tempoTotal,numEventos,tempoMedioEsperaNaFila,tamanhoMedioFilaAtendimento,tamanhoFilaMax,tempoMedioAtendimento);
+            saida.escreverArquivo("relatório.txt",tempoTotal,numEventos,tempoMedioEsperaNaFila,tamanhoMedioFilaAtendimento,tamanhoFilaMax,tempoMedioAtendimentoClienteNormal,tempoMedioAtendimentoClientePrioritario,tempoMedioAtendimento);
         } catch (Exception e) {
             System.out.println("Erro ao escrever arquivo txt relatório: " + e.getMessage());
         }
