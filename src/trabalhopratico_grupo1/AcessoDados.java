@@ -92,18 +92,18 @@ public class AcessoDados {
     }
     
     //TODO
-    public void escreverArquivo(String nomeArquivo) {
+    public void escreverArquivo(String nomeArquivo,int tempoTotal,int numEventos,double tempoMedioEsperaNaFila,double tamanhoMedioFilaAtendimento,double tamanhoFilaMax,double tempoMedioAtendimento) {
         Estatisticas est = new Estatisticas();
         try{
             FileWriter arq = new FileWriter(nomeArquivo);
             
     
-            arq.write("Tempo total: " + est.getTempoTotal() +"\n");
-            arq.write("Numero total de Eventos: " + est.getNumEventos() +"\n");
-            arq.write("Tempo médio de espera na fila de atendimento : " + est.getTempoMedioEsperaNaFila() +"\n");
-            arq.write("Tamanho médio da fila de atendimento: " + est.getTamanhoMedioFilaAtendimento() +"\n");
-            arq.write("Tamanho máximo da fila de atendimento: " + est.getTamanhoFilaMax() +"\n");
-            arq.write("Tempo médio de atendimento de cada tipo de cliente: " + est.getTempoMedioAtendimento() +"\n");
+            arq.write("Tempo total: " + tempoTotal +"\n");
+            arq.write("Numero total de Eventos: " + numEventos +"\n");
+            arq.write("Tempo médio de espera na fila de atendimento : " + tempoMedioEsperaNaFila +"\n");
+            arq.write("Tamanho médio da fila de atendimento: " + tamanhoMedioFilaAtendimento +"\n");
+            arq.write("Tamanho máximo da fila de atendimento: " + tamanhoFilaMax +"\n");
+            arq.write("Tempo médio de atendimento de cada tipo de cliente: " + tempoMedioAtendimento +"\n");
         
  
             arq.close();

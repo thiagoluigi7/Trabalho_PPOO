@@ -127,7 +127,7 @@ public class Estatisticas {
     public void escreverRelatorio() {
         try {
             AcessoDados saida = new AcessoDados();
-            saida.escreverArquivo("relatório.txt");
+            saida.escreverArquivo("relatório.txt",tempoTotal,numEventos,tempoMedioEsperaNaFila,tamanhoMedioFilaAtendimento,tamanhoFilaMax,tempoMedioAtendimento);
         } catch (Exception e) {
             System.out.println("Erro ao escrever arquivo txt relatório: " + e.getMessage());
         }
