@@ -1,7 +1,7 @@
-Tempo total: 389
-Numero total de Eventos: 529
-Tempo médio de espera na fila de atendimento : 0.0
-Tamanho médio da fila de atendimento: 0.0
-Tamanho máximo da fila de atendimento: 25
-Tempo médio de atendimento do cliente normal: 0.0
-Tempo médio de atendimento do cliente prioritario: 0.0
+Tempo total: 505
+Numero total de Eventos: 505
+Tempo médio de espera na fila de atendimento : 21
+Tamanho médio da fila de atendimento: 1
+Tamanho máximo da fila de atendimento: 26
+Tempo médio de atendimento do cliente normal: 195
+Tempo médio de atendimento do cliente prioritario: 143

@@ -80,7 +80,6 @@ public class AtendenteEfetivado extends Atendente {
     /**
      * Verifica se o atendente está ocupado atendendo alguém.
      */
-    
     public Boolean ocupado() {
         if (this.ocupado == true) {
             return true;
@@ -92,7 +91,6 @@ public class AtendenteEfetivado extends Atendente {
     /**
      * Libera o atendente após terminar com um cliente.
      */
-    
     public void desocupar() {
         this.ocupado = false;
     }

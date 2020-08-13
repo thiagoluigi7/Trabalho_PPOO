@@ -35,12 +35,12 @@ public class AcessoDados {
             AtendenteEfetivado atendenteEfe = new AtendenteEfetivado();
             AtendenteEstagiario atendenteEst = new AtendenteEstagiario();
 
-            for(int i=0;i<Integer.parseInt(numAte[0]);i++){
+            for(int i=0;i<Integer.parseInt(numAte[0]);i++) {
                 atendenteEfe = new AtendenteEfetivado();
                 atendentes.add(atendenteEfe);
             }
 
-            for(int i=0;i<Integer.parseInt(numAte[1]);i++){
+            for(int i=0;i<Integer.parseInt(numAte[1]);i++) {
                 atendenteEst = new AtendenteEstagiario();
                 atendentes.add(atendenteEst); 
             }
@@ -78,10 +78,10 @@ public class AcessoDados {
             }
 
         }
-        catch(FileNotFoundException e){
+        catch(FileNotFoundException e) {
             System.out.println("Impossivel abrir o arquivo " + arquivo);
         }
-        catch(IOException e){
+        catch(IOException e) {
             System.out.println("Problema na leitura do arquivo " + arquivo);
         }
     }
@@ -105,7 +105,7 @@ public class AcessoDados {
      * @param tamanhoFilaMax
      * @param tempoMedioAtendimento 
      */
-    public void escreverArquivo(String nomeArquivo,int tempoTotal,int numEventos,double tempoMedioEsperaNaFila,double tamanhoMedioFilaAtendimento,int tamanhoFilaMax,double tempoMedioAtendimentoClienteNormal,double tempoMedioAtendimentoClientePrioritario,double tempoMedioAtendimento) {
+    public void escreverArquivo(String nomeArquivo, int tempoTotal, int numEventos, int tempoMedioEsperaNaFila, int tamanhoMedioFilaAtendimento, int tamanhoFilaMax, int tempoMedioAtendimentoClienteNormal, int tempoMedioAtendimentoClientePrioritario, int tempoMedioAtendimento) {
         Estatisticas est = new Estatisticas();
         try{
             FileWriter arq = new FileWriter(nomeArquivo);

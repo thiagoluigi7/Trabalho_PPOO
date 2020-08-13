@@ -96,7 +96,6 @@ public class AtendenteEstagiario extends Atendente {
     /**
      * Libera o atendente após terminar com um cliente.
      */
-    
     public void desocupar() {
         this.ocupado = false;
     }

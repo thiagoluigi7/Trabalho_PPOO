@@ -13,7 +13,7 @@ public class Saque extends Evento {
      * levar para se fazer o evento.
      */
     private void setTempoInicial() {
-        this.tempo = ( int )( Math.random() * 5 )+1;
+        this.tempo = ( int )( Math.random() * 5 ) + 1;
     }
 
     public int getTempo() {
