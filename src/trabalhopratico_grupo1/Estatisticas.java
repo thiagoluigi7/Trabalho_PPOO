@@ -97,8 +97,12 @@ public class Estatisticas {
      */
 
     public double calcularTempoMedioAtendimentoClienteNormal(int tempoDeEsperaClienteNormal,int contadorFilaClienteN) {
-        tempoMedioAtendimentoClienteNormal = tempoDeEsperaClienteNormal/contadorFilaClienteN;
-        return tempoMedioAtendimentoClienteNormal;
+        if(contadorFilaClienteN>0){
+            tempoMedioAtendimentoClienteNormal = tempoDeEsperaClienteNormal/contadorFilaClienteN;
+            return tempoMedioAtendimentoClienteNormal;
+        }else{
+            return 0;
+        }
     }
     /**
      * Este método calcula quanto tempo demora cada atendimento em média.
@@ -106,9 +110,13 @@ public class Estatisticas {
      */
 
     public double calcularTempoMedioAtendimentoClientePrioritario(int tempoDeEsperaClientePrioritario,int contadorFilaClienteP) {
-        tempoMedioAtendimentoClientePrioritario = tempoDeEsperaClientePrioritario/contadorFilaClienteP;
+        if(contadorFilaClienteP>0){
+            tempoMedioAtendimentoClientePrioritario = tempoDeEsperaClientePrioritario/contadorFilaClienteP;
+            return tempoMedioAtendimentoClientePrioritario;
+        }else{
+            return 0;
+        }
         
-        return tempoMedioAtendimentoClientePrioritario;
     }
     
     /**

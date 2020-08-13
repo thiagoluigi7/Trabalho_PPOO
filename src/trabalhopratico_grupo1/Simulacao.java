@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Simulacao {
 
+    private int tempoTotal;
     private int tempoAtual;
     private int numMaxClientes;
     private int tempoDeEsperaTotal;
@@ -18,6 +19,7 @@ public class Simulacao {
     private ArrayList<Cliente> filaDeEspera;
 
     public Simulacao() {
+        this.tempoTotal = 0;
         this.tempoAtual = 0;
         this.numMaxClientes = 0;
         this.tempoDeEsperaTotal = 0;
@@ -177,17 +179,19 @@ public class Simulacao {
     private void atendimento() {
         int min;
         try {
-            while (!clientes.isEmpty()) {            
+            while (!clientes.isEmpty()) {     
                 for (int j=0; j < atendentes.size(); j++) {
                     if (atendentes.get(j).ocupado().equals(false) && atendentes.get(j).getHoraLivre() < clientes.get(0).getHoraChegada()) {
                         atendentes.get(j).atender(clientes.get(0));
                         atualizarEventos(atendentes.get(j).registraEventos());
                         clientes.remove(0);
-                        //atendentes.get(j).desocupar();
+                        atendentes.get(j).desocupar();
                     } else { //Todos os atendentes estão ocupados
+                        
                         filaDeEspera.add(clientes.get(0));
                         contadorFilaEspera++;
                         for (int k = 0; k < atendentes.size(); k++) {
+                            System.out.println("oi");
                             min = menorHoraLivre(atendentes);
                             if(clientes.get(0) instanceof ClienteNormal ){
                                 contadorFilaClienteN++;
@@ -205,7 +209,7 @@ public class Simulacao {
                     }
                 }
             }
-            tempoAtual = maiorHoraLivre(atendentes);
+            tempoTotal = maiorHoraLivre(atendentes);
         } catch (Exception e) {
             System.out.println("Um erro ocorreu no laço principal: " + e.getMessage());
         }
@@ -235,12 +239,11 @@ public class Simulacao {
     public void gerarRelatorio() {
         try {
             Estatisticas relatorio = new Estatisticas();
-            relatorio.calcularTempoTotal(tempoAtual);
-            relatorio.calcularNumEventos(getEventos());
-            relatorio.calcularTempoMedioEsperaNaFila();
-            relatorio.calcularTamanhoMedioFilaAtendimento();
-            relatorio.calcularTamanhoFilaMax(getNumMaxClientes());
+            relatorio.calcularTempoTotal(tempoTotal);
+            relatorio.calcularNumEventos(eventos);
             relatorio.calcularTempoMedioAtendimento(tempoDeEsperaTotal,numMaxClientes);
+            //relatorio.calcularTamanhoMedioFilaAtendimento();
+            relatorio.calcularTamanhoFilaMax(getNumMaxClientes());
             relatorio.calcularTempoMedioAtendimentoClienteNormal(tempoDeEsperaClienteNormal, contadorFilaClienteN);
             relatorio.calcularTempoMedioAtendimentoClientePrioritario(tempoDeEsperaClientePrioritario, contadorFilaClienteP);
             relatorio.criarGrafico();

@@ -37,14 +37,13 @@ public class AcessoDados {
 
             for(int i=0;i<Integer.parseInt(numAte[0]);i++){
                 atendenteEfe = new AtendenteEfetivado();
-                atendentes.add(atendenteEfe);  
+                atendentes.add(atendenteEfe);
             }
 
             for(int i=0;i<Integer.parseInt(numAte[1]);i++){
                 atendenteEst = new AtendenteEstagiario();
                 atendentes.add(atendenteEst); 
             }
-
             linha = arq.readLine();
 
             //Leitura do tipo de estrategia

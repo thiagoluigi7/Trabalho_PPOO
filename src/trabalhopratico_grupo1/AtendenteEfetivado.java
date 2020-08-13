@@ -23,7 +23,6 @@ public class AtendenteEfetivado extends Atendente {
      * retorna o tempo total gasto.
      * @param Cliente Um cliente.
      */
-    //TODO
     public void atender(Cliente umCliente) {
         try {
             ocupado = true;
