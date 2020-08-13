@@ -94,6 +94,30 @@ public class Estatisticas {
 
     }
 
+    public int getTempoTotal() {
+        return tempoTotal;
+    }
+
+    public int getNumEventos() {
+        return numEventos;
+    }
+
+    public double getTempoMedioEsperaNaFila() {
+        return tempoMedioEsperaNaFila;
+    }
+
+    public double getTamanhoMedioFilaAtendimento() {
+        return tamanhoMedioFilaAtendimento;
+    }
+
+    public int getTamanhoFilaMax() {
+        return tamanhoFilaMax;
+    }
+
+    public double getTempoMedioAtendimento() {
+        return tempoMedioAtendimento;
+    }
+
     /**
      * Este método irá criar um arquivo txt com o nome
      * relatório e vai escrever neste arquivo todos os 
