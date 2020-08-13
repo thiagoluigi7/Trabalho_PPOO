@@ -148,6 +148,7 @@ public class Simulacao {
     //TODO falta terminar
     private void atendimento() {
         int contadorFilaEspera = 0;
+        int min;
         try {
             while (!clientes.isEmpty()) {            
                 for (int j=0; j < atendentes.size(); j++) {
@@ -160,7 +161,7 @@ public class Simulacao {
                         filaDeEspera.add(clientes.get(0));
                         contadorFilaEspera++;
                         for (int k = 0; k < atendentes.size(); k++) {
-                            //min(atendentes.get(j).getHoraLivre()); //return int 20 ex
+                            min = menorHoraLivre(atendentes); //min(atendentes.get(j).getHoraLivre()); //return int 20 ex
                             setTempoDeEspera(getTempoDeEspera() + filaDeEspera.get(0).getHoraChegada() - atendentes.get(j).getHoraLivre());
                             atendentes.get(j).atender(clientes.get(0));
                             atualizarEventos(atendentes.get(j).registraEventos());
@@ -210,6 +211,22 @@ public class Simulacao {
         } catch (Exception e) {
             System.out.println("Erro ao gerar o relatório: " + e.getMessage());
         }
+    }
+
+    /**
+     * Este método percorre a lista de atendentes e retorna o momento mais
+     * próximo em que que haverá um atendente livre.
+     * @param ArrayList<Atendente> atendentes
+     * @return int menor
+     */
+    public int menorHoraLivre(ArrayList<Atendente> _atendentes) {
+        int menor = 1000;
+        for (int i=0; i < _atendentes.size(); i++) {
+            if (_atendentes.get(i).getHoraLivre() < menor) {
+                menor = _atendentes.get(i).getHoraLivre();
+            }
+        }
+        return menor;
     }
 
 }
