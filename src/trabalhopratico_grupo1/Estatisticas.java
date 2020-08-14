@@ -121,32 +121,8 @@ public class Estatisticas {
      * Este método criará uma janela com um gráfico nela.
      */
     //TODO
-    public void criarGrafico() {
-
-    }
-
-    public int getTempoTotal() {
-        return tempoTotal;
-    }
-
-    public int getNumEventos() {
-        return numEventos;
-    }
-
-    public int getTempoMedioEsperaNaFila() {
-        return tempoMedioEsperaNaFila;
-    }
-
-    public int getTamanhoMedioFilaAtendimento() {
-        return tamanhoMedioFilaAtendimento;
-    }
-
-    public int getTamanhoFilaMax() {
-        return tamanhoFilaMax;
-    }
-
-    public int getTempoMedioAtendimento() {
-        return tempoMedioAtendimento;
+    public void criarGrafico(ArrayList<Atendente> atendentes) {
+        new JanelaGrafico(atendentes).setVisible(true);
     }
 
     /**

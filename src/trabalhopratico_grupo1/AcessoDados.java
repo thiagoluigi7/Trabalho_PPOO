@@ -86,7 +86,6 @@ public class AcessoDados {
         }
     }
 
-    
     public ArrayList<Cliente> getClientes() {
         return clientes;
     }

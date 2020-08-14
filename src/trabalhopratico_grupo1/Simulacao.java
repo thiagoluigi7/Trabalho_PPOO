@@ -8,8 +8,8 @@ public class Simulacao {
     private int tempoAtual;
     private int numMaxClientes;
     private int tempoDeEsperaTotal;
-    private int tempoDeEsperaClienteNormal;
-    private int tempoDeEsperaClientePrioritario;
+    private int tempoDeAtendimentoClienteNormal;
+    private int tempoDeAtendimentoClientePrioritario;
     private int contadorFilaClienteN;
     private int contadorFilaClienteP;
     private int contadorFilaEsperaVazia;
@@ -116,35 +116,7 @@ public class Simulacao {
     public ArrayList<Evento> getEventos() {
         return this.eventos;
     }
-    /*
-    public int getTempoDeEsperaClienteNormal() {
-        return tempoDeEsperaClienteNormal;
-    }
 
-    public int getTempoDeEsperaClientePrioritario() {
-        return tempoDeEsperaClientePrioritario;
-    }
-
-    public int getContadorFilaEspera() {
-        return contadorFilaEspera;
-    }
-
-    public int getContadorFilaClienteN() {
-        return contadorFilaClienteN;
-    }
-
-    public int getContadorFilaClienteP() {
-        return contadorFilaClienteP;
-    }
-
-    public int getTempoDeEsperaTotal() {
-        return this.tempoDeEsperaTotal;
-    }
-    
-    public void setTempoDeEsperaTotal(int _tempo) {
-        this.tempoDeEsperaTotal = _tempo;
-    }
-    */
     /**
      * Este método lê o arquivo de entrada. Dele é retirado
      * quantos funcionários o banco tem, qual sua categoria,
@@ -192,19 +164,19 @@ public class Simulacao {
                             min = menorHoraLivre(atendentes);
                             if(clientes.get(0) instanceof ClienteNormal ) {
                                 contadorFilaClienteN++;
-                                tempoDeEsperaClienteNormal = tempoDeEsperaClienteNormal + min - atendentes.get(j).getHoraLivre();
+                                tempoDeAtendimentoClienteNormal = tempoDeAtendimentoClienteNormal + min - atendentes.get(j).getHoraLivre();
                                 tempoDeEsperaTotal = tempoDeEsperaTotal + atendentes.get(j).getHoraLivre() - min;
                                 atendentes.get(j).atender(clientes.get(0));
-                                tempoDeEsperaClienteNormal = tempoDeEsperaClienteNormal + atendentes.get(j).getHoraLivre();
+                                tempoDeAtendimentoClienteNormal = tempoDeAtendimentoClienteNormal + atendentes.get(j).getHoraLivre();
                                 atualizarEventos(atendentes.get(j).registraEventos());
                                 clientes.remove(0);
                                 atendentes.get(j).desocupar();
                             } else {
                                 contadorFilaClienteP++;
-                                tempoDeEsperaClientePrioritario = tempoDeEsperaClientePrioritario + min - atendentes.get(j).getHoraLivre();
+                                tempoDeAtendimentoClientePrioritario = tempoDeAtendimentoClientePrioritario + min - atendentes.get(j).getHoraLivre();
                                 tempoDeEsperaTotal = tempoDeEsperaTotal + atendentes.get(j).getHoraLivre() - min;
                                 atendentes.get(j).atender(clientes.get(0));
-                                tempoDeEsperaClientePrioritario = tempoDeEsperaClientePrioritario + atendentes.get(j).getHoraLivre();
+                                tempoDeAtendimentoClientePrioritario = tempoDeAtendimentoClientePrioritario + atendentes.get(j).getHoraLivre();
                                 atualizarEventos(atendentes.get(j).registraEventos());
                                 clientes.remove(0);
                                 atendentes.get(j).desocupar();
@@ -239,7 +211,6 @@ public class Simulacao {
      * Este método irá gerar o relatório com suas estatísticas
      * e irá criar uma janela com o gráfico.
      */
-    //TODO criar gráfico
     public void gerarRelatorio() {
         try {
             Estatisticas relatorio = new Estatisticas();
@@ -248,9 +219,9 @@ public class Simulacao {
             relatorio.calcularTempoMedioEsperaNaFila(tempoDeEsperaTotal,numMaxClientes);
             relatorio.calcularTamanhoMedioFilaAtendimento(contadorFilaEsperaVazia, filaDeEspera.size());
             relatorio.calcularTamanhoFilaMax(numMaxClientes);
-            relatorio.calcularTempoMedioAtendimentoClienteNormal(tempoDeEsperaClienteNormal, contadorFilaClienteN);
-            relatorio.calcularTempoMedioAtendimentoClientePrioritario(tempoDeEsperaClientePrioritario, contadorFilaClienteP);
-            relatorio.criarGrafico();
+            relatorio.calcularTempoMedioAtendimentoClienteNormal(tempoDeAtendimentoClienteNormal, contadorFilaClienteN);
+            relatorio.calcularTempoMedioAtendimentoClientePrioritario(tempoDeAtendimentoClientePrioritario, contadorFilaClienteP);
+            relatorio.criarGrafico(atendentes);
             relatorio.escreverRelatorio();
         } catch (Exception e) {
             System.out.println("Erro ao gerar o relatório: " + e.getMessage());
